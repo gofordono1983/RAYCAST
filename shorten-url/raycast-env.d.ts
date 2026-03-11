@@ -11,7 +11,9 @@ type ExtensionPreferences = {
   /** Shlink Server URL - Your Shlink instance URL (e.g. https://link.dno.sh) */
   "shlinkUrl": string,
   /** Shlink API Key - API key generated via shlink api-key:generate */
-  "shlinkApiKey": string
+  "shlinkApiKey": string,
+  /** Custom URL Schemes - Comma-separated list of app URL schemes to recognize (e.g. obsidian, slack, zoom) */
+  "customSchemes": string
 }
 
 /** Preferences accessible in all the extension's commands */

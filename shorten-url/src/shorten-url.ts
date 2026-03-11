@@ -56,10 +56,26 @@ async function shortenUrl(
   return data.shortUrl;
 }
 
-function extractUrl(text: string): string | null {
-  const match = text.match(/https?:\/\/[^\s<>"']+/);
-  if (match) return match[0];
+function extractUrl(text: string, customSchemes: string): string | null {
+  // Match http/https URLs
+  const httpMatch = text.match(/https?:\/\/[^\s<>"']+/);
+  if (httpMatch) return httpMatch[0];
 
+  // Match custom app URL schemes (obsidian://, slack://, etc.)
+  const schemes = customSchemes
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (schemes.length > 0) {
+    const escaped = schemes.map((s) =>
+      s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+    );
+    const schemePattern = new RegExp(`(${escaped.join("|")})://[^\\s<>"']+`);
+    const schemeMatch = text.match(schemePattern);
+    if (schemeMatch) return schemeMatch[0];
+  }
+
+  // Bare domain (e.g. "google.com/path")
   if (/^[\w][\w.-]+\.[a-z]{2,}(\/\S*)?$/i.test(text.trim())) {
     return `https://${text.trim()}`;
   }
@@ -68,7 +84,7 @@ function extractUrl(text: string): string | null {
 }
 
 export default async function Command() {
-  const { shlinkUrl, shlinkApiKey } =
+  const { shlinkUrl, shlinkApiKey, customSchemes } =
     getPreferenceValues<ExtensionPreferences>();
 
   // Try selected text first, fall back to clipboard
@@ -84,7 +100,7 @@ export default async function Command() {
     return;
   }
 
-  const longUrl = extractUrl(rawText.trim());
+  const longUrl = extractUrl(rawText.trim(), customSchemes ?? "");
   if (!longUrl) {
     await showHUD("No URL found");
     return;

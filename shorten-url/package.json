@@ -34,6 +34,15 @@
       "type": "password",
       "required": true,
       "placeholder": "Enter your API key"
+    },
+    {
+      "name": "customSchemes",
+      "title": "Custom URL Schemes",
+      "description": "Comma-separated list of app URL schemes to recognize (e.g. obsidian, slack, zoom)",
+      "type": "textfield",
+      "required": false,
+      "placeholder": "obsidian, slack, zoom, notion",
+      "default": "obsidian, raycast, slack, zoom, notion, spotify, vscode, msteams, tg, onepassword"
     }
   ],
   "dependencies": {
