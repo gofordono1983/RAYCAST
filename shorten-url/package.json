@@ -31,6 +31,12 @@
       "title": "Shorten URL & Replace",
       "description": "Shorten the selected URL and replace it in-place",
       "mode": "no-view"
+    },
+    {
+      "name": "manage-urls",
+      "title": "Manage Short URLs",
+      "description": "Create, browse, edit, and delete short URLs",
+      "mode": "view"
     }
   ],
   "preferences": [
