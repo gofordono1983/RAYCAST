@@ -5,15 +5,31 @@
   "description": "Select a URL anywhere, hit a hotkey — shortened link lands in your clipboard via Shlink",
   "icon": "extension-icon.png",
   "author": "donovanhaney",
-  "platforms": ["macOS"],
-  "categories": ["Productivity"],
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Productivity"
+  ],
   "license": "MIT",
-  "keywords": ["url", "shorten", "shlink", "link", "short"],
+  "keywords": [
+    "url",
+    "shorten",
+    "shlink",
+    "link",
+    "short"
+  ],
   "commands": [
     {
       "name": "shorten-url",
       "title": "Shorten URL",
       "description": "Shorten the selected URL and copy to clipboard",
+      "mode": "no-view"
+    },
+    {
+      "name": "shorten-url-replace",
+      "title": "Shorten URL & Replace",
+      "description": "Shorten the selected URL and replace it in-place",
       "mode": "no-view"
     },
     {
@@ -53,7 +69,7 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.104.0",
-    "@raycast/utils": "^1.19.0"
+    "@raycast/utils": "^2.2.3"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",

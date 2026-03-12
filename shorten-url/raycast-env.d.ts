@@ -22,6 +22,8 @@ declare type Preferences = ExtensionPreferences
 declare namespace Preferences {
   /** Preferences accessible in the `shorten-url` command */
   export type ShortenUrl = ExtensionPreferences & {}
+  /** Preferences accessible in the `shorten-url-replace` command */
+  export type ShortenUrlReplace = ExtensionPreferences & {}
   /** Preferences accessible in the `manage-urls` command */
   export type ManageUrls = ExtensionPreferences & {}
 }
@@ -29,6 +31,8 @@ declare namespace Preferences {
 declare namespace Arguments {
   /** Arguments passed to the `shorten-url` command */
   export type ShortenUrl = {}
+  /** Arguments passed to the `shorten-url-replace` command */
+  export type ShortenUrlReplace = {}
   /** Arguments passed to the `manage-urls` command */
   export type ManageUrls = {}
 }
